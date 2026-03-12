@@ -1,120 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Goya · Dalí</title>
-
-<meta name="description" content="Acceso a la exposición Goya-Dalí">
-
-<link rel="icon" href="data:,">
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goya · Dalí</title>
+  <meta name="description" content="Acceso a la exposición Goya-Dalí" />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
-
 <body>
+  <main>
+    <section id="heroSection" class="screen intro-active">
+      <div class="dali-container">
+        <img
+          id="daliFace"
+          class="dali-image intro-hidden"
+          src="assets/dali.png"
+          alt="Grabado original de Salvador Dalí"
+        />
+        <div class="vignette"></div>
+        <div class="film-grain"></div>
+      </div>
 
+      <div class="title-block" id="titleBlock">
+        <p class="eyebrow">EXPOSICIÓN</p>
+        <h1>Goya — Dalí</h1>
+        <p class="subtitle">Del Capricho al Disparate</p>
+      </div>
 
-<main>
+      <div class="center-ui">
+        <button id="openFormBtn" class="qr-button hidden" type="button">
+          ACCEDER A LA EXPOSICIÓN
+        </button>
+      </div>
 
+      <div class="logos">
+        <img src="assets/logo-f20f.png" alt="F20F" />
+        <img src="assets/logo-funiber.png" alt="Funiber" />
+        <img src="assets/logo-secure.png" alt="Secure Assets" />
+      </div>
+    </section>
 
-<section id="heroSection" class="screen">
+    <section id="formSection" class="form-wrap hidden">
+      <div class="form-card">
+        <h1>Registro de acceso</h1>
 
-<img class="dali-image" src="assets/dali.png" alt="Imagen Dalí">
+        <form id="visitorForm">
+          <label for="nombre">Nombre *</label>
+          <input id="nombre" name="nombre" type="text" required />
 
+          <label for="institucion">Institución *</label>
+          <input id="institucion" name="institucion" type="text" required />
 
-<div class="center-ui">
+          <label for="pais">País *</label>
+          <input id="pais" name="pais" type="text" required />
 
-<button id="openFormBtn" class="qr-button">
+          <label for="email">Email (opcional)</label>
+          <input id="email" name="email" type="email" />
 
-LEA EL QR PARA REGISTRARSE
+          <label class="check">
+            <input id="consent" name="consent" type="checkbox" />
+            Deseo recibir información sobre próximos eventos
+          </label>
 
-</button>
+          <button type="submit" class="submit-btn">ENVIAR</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-</div>
-
-
-<div class="logos">
-
-<img src="assets/logo-f20f.png" alt="F20F">
-
-<img src="assets/logo-funiber.png" alt="Funiber">
-
-<img src="assets/logo-secure.png" alt="Secure">
-
-</div>
-
-</section>
-
-
-
-<section id="formSection" class="form-wrap hidden">
-
-<div class="form-card">
-
-<h1>Registro de acceso</h1>
-
-
-<form id="visitorForm">
-
-<label for="nombre">Nombre *</label>
-
-<input id="nombre" name="nombre" type="text" required>
-
-
-
-<label for="institucion">Institución *</label>
-
-<input id="institucion" name="institucion" type="text" required>
-
-
-
-<label for="pais">País *</label>
-
-<input id="pais" name="pais" type="text" required>
-
-
-
-<label for="email">Email (opcional)</label>
-
-<input id="email" name="email" type="email">
-
-
-
-<label class="check">
-
-<input id="consent" name="consent" type="checkbox">
-
-Deseo recibir información sobre próximos eventos
-
-</label>
-
-
-
-<button type="submit" class="submit-btn">
-
-ENVIAR
-
-</button>
-
-</form>
-
-</div>
-
-</section>
-
-
-</main>
-
-
-<script src="app.js"></script>
-
-
+  <script src="app.js"></script>
 </body>
-
 </html>
