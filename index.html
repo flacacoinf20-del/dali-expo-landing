@@ -1,25 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Goya · Dalí</title>
-  <meta name="description" content="Acceso a la exposición Goya-Dalí" />
-  <link rel="stylesheet" href="style.css" />
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Goya · Dalí</title>
+
+<meta name="description" content="Acceso a la exposición Goya-Dalí">
+
+<link rel="icon" href="data:,">
+
+<link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
-  <main class="screen">
-    <img class="dali-image" src="assets/fot dali.PNG" alt="Imagen oficial Dalí" />
 
-    <div class="center-ui">
-      <button class="qr-button">LEA EL QR PARA REGISTRARSE</button>
-    </div>
 
-    <div class="logos">
-      <img src="assets/logofundacionf20f.png" alt="F20F" />
-      <img src="assets/logofuniber.png" alt="Funiber" />
-      <img src="assets/logosecure.png" alt="Secure" />
-    </div>
-  </main>
+<main>
+
+
+<section id="heroSection" class="screen">
+
+<img class="dali-image" src="assets/dali.png" alt="Imagen Dalí">
+
+
+<div class="center-ui">
+
+<button id="openFormBtn" class="qr-button">
+
+LEA EL QR PARA REGISTRARSE
+
+</button>
+
+</div>
+
+
+<div class="logos">
+
+<img src="assets/logo-f20f.png" alt="F20F">
+
+<img src="assets/logo-funiber.png" alt="Funiber">
+
+<img src="assets/logo-secure.png" alt="Secure">
+
+</div>
+
+</section>
+
+
+
+<section id="formSection" class="form-wrap hidden">
+
+<div class="form-card">
+
+<h1>Registro de acceso</h1>
+
+
+<form id="visitorForm">
+
+<label for="nombre">Nombre *</label>
+
+<input id="nombre" name="nombre" type="text" required>
+
+
+
+<label for="institucion">Institución *</label>
+
+<input id="institucion" name="institucion" type="text" required>
+
+
+
+<label for="pais">País *</label>
+
+<input id="pais" name="pais" type="text" required>
+
+
+
+<label for="email">Email (opcional)</label>
+
+<input id="email" name="email" type="email">
+
+
+
+<label class="check">
+
+<input id="consent" name="consent" type="checkbox">
+
+Deseo recibir información sobre próximos eventos
+
+</label>
+
+
+
+<button type="submit" class="submit-btn">
+
+ENVIAR
+
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<script src="app.js"></script>
+
+
 </body>
+
 </html>
