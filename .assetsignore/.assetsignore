@@ -1,0 +1,11 @@
+_worker.js
+wrangler.jsonc
+README.md
+*.zip
+.git*
+.git
+.git/
+node_modules
+node_modules/
+functions
+functions/
