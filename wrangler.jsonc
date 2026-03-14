@@ -1,5 +1,6 @@
 {
   "name": "dali-expo-landing",
+  "main": "_worker.js",
   "compatibility_date": "2026-03-12",
   "assets": {
     "directory": "."
