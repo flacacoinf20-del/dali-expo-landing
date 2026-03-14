@@ -1,6 +1,11 @@
 {
   "name": "dali-expo-landing",
+  "main": "_worker.js",
   "compatibility_date": "2026-03-12",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  },
   "d1_databases": [
     {
       "binding": "DB",
