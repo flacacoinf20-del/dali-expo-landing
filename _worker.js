@@ -2,60 +2,33 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // API
     if (url.pathname === "/api/registro") {
+
       if (request.method !== "POST") {
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            error: "Method Not Allowed"
-          }),
-          {
-            status: 405,
-            headers: { "Content-Type": "application/json" }
-          }
-        );
+        return new Response("Method Not Allowed", { status: 405 });
       }
 
-      try {
-        const data = await request.json();
+      const data = await request.json();
 
-        const nombre = data.nombre?.trim() || null;
-        const institucion = data.institucion?.trim() || null;
-        const pais = data.pais?.trim() || null;
-        const email = data.email?.trim() || null;
+      const nombre = data.nombre || null;
+      const institucion = data.institucion || null;
+      const pais = data.pais || null;
+      const email = data.email || null;
 
-        const result = await env.DB.prepare(`
-          INSERT INTO visitantes (nombre, institucion, pais, email)
-          VALUES (?, ?, ?, ?)
-        `)
-          .bind(nombre, institucion, pais, email)
-          .run();
+      const result = await env.DB.prepare(
+        "INSERT INTO visitantes (nombre, institucion, pais, email) VALUES (?, ?, ?, ?)"
+      )
+      .bind(nombre, institucion, pais, email)
+      .run();
 
-        return new Response(
-          JSON.stringify({
-            ok: true,
-            inserted: result?.meta?.changes || 0,
-            last_row_id: result?.meta?.last_row_id || null
-          }),
-          {
-            status: 200,
-            headers: { "Content-Type": "application/json" }
-          }
-        );
-      } catch (error) {
-        return new Response(
-          JSON.stringify({
-            ok: false,
-            error: String(error?.message || error)
-          }),
-          {
-            status: 500,
-            headers: { "Content-Type": "application/json" }
-          }
-        );
-      }
+      return new Response(
+        JSON.stringify({ ok: true, id: result.meta.last_row_id }),
+        { headers: { "Content-Type": "application/json" } }
+      );
     }
 
+    // STATIC FILES
     return env.ASSETS.fetch(request);
   }
 };
