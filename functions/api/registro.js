@@ -1,22 +1,42 @@
 export async function onRequestPost(context) {
+  try {
+    const { request, env } = context;
+    const data = await request.json();
 
-  const { request, env } = context;
-  const data = await request.json();
+    const nombre = data.nombre?.trim() || null;
+    const institucion = data.institucion?.trim() || null;
+    const pais = data.pais?.trim() || null;
+    const email = data.email?.trim() || null;
 
-  const nombre = data.nombre || null;
-  const institucion = data.institucion || null;
-  const pais = data.pais || null;
-  const email = data.email || null;
+    const result = await env.DB.prepare(`
+      INSERT INTO visitantes (nombre, institucion, pais, email)
+      VALUES (?, ?, ?, ?)
+    `)
+      .bind(nombre, institucion, pais, email)
+      .run();
 
-  await env.DB.prepare(`
-    INSERT INTO visitantes (nombre, institucion, pais, email)
-    VALUES (?, ?, ?, ?)
-  `)
-  .bind(nombre, institucion, pais, email)
-  .run();
-
-  return new Response(
-    JSON.stringify({ status: "ok" }),
-    { headers: { "Content-Type": "application/json" } }
-  );
+    return new Response(
+      JSON.stringify({
+        ok: true,
+        inserted: result?.meta?.changes || 0,
+        last_row_id: result?.meta?.last_row_id || null,
+        data: { nombre, institucion, pais, email }
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        ok: false,
+        error: String(error?.message || error)
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+  }
 }
