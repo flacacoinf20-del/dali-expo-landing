@@ -1,0 +1,14 @@
+{
+  "name": "dali-expo-landing",
+  "compatibility_date": "2026-03-12",
+  "assets": {
+    "directory": "."
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "visitantes_expo",
+      "database_id": "3eec235f-1168-41aa-9034-99e0454e0a65"
+    }
+  ]
+}

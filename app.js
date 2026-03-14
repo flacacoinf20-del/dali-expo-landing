@@ -69,47 +69,27 @@ window.addEventListener("load", () => {
 document.addEventListener(
   "click",
   () => {
-    if (!audioStarted) {
-      playIntroAudio();
-    }
-  },
-  { once: true }
-);
+ const visitorForm = document.getElementById("visitorForm");
 
-setInterval(blink, 4800);
-setInterval(pulseFace, 7200);
+visitorForm.addEventListener("submit", async (event) => {
 
-openFormBtn.addEventListener("click", () => {
-  heroSection.classList.add("hidden");
-  formSection.classList.remove("hidden");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-visitorForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const nombre = document.getElementById("nombre").value.trim();
-  const institucion = document.getElementById("institucion").value.trim();
-  const pais = document.getElementById("pais").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const consent = document.getElementById("consent").checked;
+  const data = {
+    nombre: document.getElementById("nombre").value.trim(),
+    institucion: document.getElementById("institucion").value.trim(),
+    pais: document.getElementById("pais").value.trim(),
+    email: document.getElementById("email").value.trim() || null
+  };
 
-  if (!nombre || !institucion || !pais) {
-    alert("Complete nombre, institución y país.");
-    return;
-  }
-
-  console.log({
-    nombre,
-    institucion,
-    pais,
-    email: email || null,
-    consentimiento_eventos: consent,
-    evento: "goya-dali-del-capricho-al-disparate",
-    fecha_iso: new Date().toISOString(),
-    intro_finished: introFinished
+  await fetch("/api/registro", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
   });
 
-  alert("Registro enviado correctamente.");
   visitorForm.reset();
+  alert("Registro guardado");
 });
